@@ -1,15 +1,11 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
-//  ппідключення бібліотеки basicLightbox.
+//  підключення бібліотеки basicLightbox.
+
 const script = document.createElement("script");
 script.src =
   "https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.js";
 document.body.appendChild(script);
-const link = document.createElement("link");
-link.rel = "slylesheet";
-link.href =
-  "https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.css";
-document.head.appendChild(link);
 
 // змінні для роботи
 const refs = {
