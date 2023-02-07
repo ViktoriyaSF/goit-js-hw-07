@@ -1,7 +1,9 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
-//  підключення бібліотеки basicLightbox.
 
+// preview - big, original-small, description-alt;
+
+//  підключення бібліотеки basicLightbox.
 const script = document.createElement("script");
 script.src =
   "https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.js";
