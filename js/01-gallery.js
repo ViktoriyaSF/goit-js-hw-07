@@ -4,6 +4,12 @@ import { galleryItems } from "./gallery-items.js";
 // preview - big, original-small, description-alt;
 
 //  підключення бібліотеки basicLightbox.
+// const link = document.createElement("link");
+// link.rel = "slylesheet";
+// link.href =
+//   "https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.css";
+// document.head.appendChild(link);
+
 const script = document.createElement("script");
 script.src =
   "https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.js";
@@ -35,10 +41,10 @@ function onImgClick(event) {
   const instance = basicLightbox.create(
     `<img src=${largeImg} alt=${event.target.alt}/>`,
     {
-      onShow: (instance) => {
+      onShow: () => {
         document.addEventListener("keydown", onModal);
       },
-      onClose: (instance) => {
+      onClose: () => {
         document.removeEventListener("keydown", onModal);
       },
     }
