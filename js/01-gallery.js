@@ -8,22 +8,20 @@ script.src =
 document.body.appendChild(script);
 
 // змінні для роботи
-const refs = {
-  galleryEl: document.querySelector("div.gallery"),
-};
+const galleryEl = document.querySelector("div.gallery");
 
 // сформування розмітки з класами для  html
 const galleryImg = galleryItems
   .map(
     ({ preview, original, description }) =>
-      `<div class="gallery__item"><a class="gallery__link" href=${original}><img class="gallery__image" src=${preview} data-source=${original} alt=${description}/></a></div>`
+      `<div class="gallery__item"><a class="gallery__link" href="${original}" ><img class="gallery__image" src="${preview}" data-source="${original}" alt="Image ${description}"/></a></div>`
   )
   .join("");
 
-refs.galleryEl.insertAdjacentHTML("beforeend", galleryImg);
+galleryEl.insertAdjacentHTML("beforeend", galleryImg);
 
 // створення виклику на img
-refs.galleryEl.addEventListener("click", onImgClick);
+galleryEl.addEventListener("click", onImgClick);
 
 function onImgClick(event) {
   event.preventDefault();
