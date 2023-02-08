@@ -1,7 +1,7 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-// preview - big, original-small, description-alt;
+// preview - small, original-large, description-alt;
 
 //  підключення бібліотеки basicLightbox.
 // const link = document.createElement("link");
@@ -30,30 +30,24 @@ galleryEl.insertAdjacentHTML("beforeend", galleryImg);
 
 // створення виклику на img
 galleryEl.addEventListener("click", onImgClick);
-
 function onImgClick(event) {
   event.preventDefault();
   if (event.target.nodeName !== "IMG") {
     return;
   }
-  const largeImg = event.target.dataset.source;
-
+  // використання бібліотеки
   const instance = basicLightbox.create(
-    `<img src=${largeImg} alt=${event.target.alt}/>`,
-    {
-      onShow: () => {
-        document.addEventListener("keydown", onModal);
-      },
-      onClose: () => {
-        document.removeEventListener("keydown", onModal);
-      },
-    }
+    `<img src="${event.target.dataset.source}" alt="${event.target.alt}">`
   );
   instance.show();
 
-  function onModal(event) {
+  // закриття кнопка Esc
+  window.addEventListener("keydown", onImg);
+  function onImg(event) {
+    console.log(event.code);
     if (event.code === "Escape") {
       instance.close();
+      window.removeEventListener("kyedown", onImg);
     }
   }
 }
