@@ -1,7 +1,7 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-// preview - big, original-small, description-alt;
+// preview - small, original-large, description-alt;
 
 console.log(galleryItems);
 
@@ -14,7 +14,7 @@ console.log(galleryItems);
 // script.referrerpolicy = "no-referrer";
 // document.body.appendChild(script);
 
-// змінні для роботи
+// змінні по роботі
 const galleryEl = document.querySelector("ul.gallery");
 
 // сформування розмітки з класами для  html
