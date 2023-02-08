@@ -10,10 +10,10 @@ import { galleryItems } from "./gallery-items.js";
 //   "https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.css";
 // document.head.appendChild(link);
 
-const script = document.createElement("script");
-script.src =
-  "https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.js";
-document.body.appendChild(script);
+// const script = document.createElement("script");
+// script.src =
+//   "https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.js";
+// document.body.appendChild(script);
 
 // змінні для роботи
 const galleryEl = document.querySelector("div.gallery");
@@ -36,18 +36,50 @@ function onImgClick(event) {
     return;
   }
   // використання бібліотеки
-  const instance = basicLightbox.create(
-    `<img src="${event.target.dataset.source}" alt="${event.target.alt}">`
-  );
-  instance.show();
 
-  // закриття кнопка Esc
-  window.addEventListener("keydown", onImg);
+  // -----2 варіант
+  // створення basicLightbox.create ('', {option})
+  const instance = basicLightbox.create(
+    `<img src="${event.target.dataset.source}" alt="${event.target.alt}">`,
+    {
+      // коли відкривається вишаємо слухача
+      onShow: (instance) => {
+        window.addEventListener("keydown", onImg);
+      },
+      // коли закривається знімаємо слухача
+      onClose: (instance) => {
+        window.removeEventListener("keydown", onImg);
+      },
+    }
+  );
+  // сама функція закриває вікно
   function onImg(event) {
-    console.log(event.code);
     if (event.code === "Escape") {
       instance.close();
-      window.removeEventListener("kyedown", onImg);
     }
   }
+  // визов цього basicLightbox
+  instance.show();
 }
+
+// -------1 варіант
+// створення basicLightbox.create (''), без опцій
+//   const instance = basicLightbox.create(
+//     `<img src="${event.target.dataset.source}" alt="${event.target.alt}">`
+//   );
+//   instance.show();
+
+// закриття кнопка Esc
+
+// вішаємо слухача
+//   window.addEventListener("keydown", onImg);
+
+// закриваємо вікно і знімаємо слухача
+//   function onImg(event) {
+//     console.log(event.code);
+//     if (event.code === "Escape") {
+//       instance.close();
+//       window.removeEventListener("keydown", onImg);
+//     }
+//   }
+// }
